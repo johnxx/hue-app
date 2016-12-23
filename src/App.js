@@ -66,7 +66,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Layout>
+        <Layout fixedHeader>
           <AppHeader title={this.state.description} refresh={this.refreshGroups} />
           <Drawer title="Hue App">
             <Navigation>

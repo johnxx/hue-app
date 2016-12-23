@@ -9,14 +9,12 @@ import {
 class AppHeader extends Component {
   render() {
     return (
-      <div className="App-header">
-        <Header title={this.props.title} >
-          <Navigation>
-            <span></span>
-            <IconButton name="refresh" onClick={this.props.refresh} ripple/>
-          </Navigation>
-        </Header>
-      </div>
+      <Header title={this.props.title} >
+        <Navigation>
+          <span></span>
+          <IconButton name="refresh" onClick={this.props.refresh} ripple/>
+        </Navigation>
+      </Header>
     );
   }
 }
