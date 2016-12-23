@@ -4,18 +4,18 @@ import {
   IconButton,
   Header,
 } from 'react-mdl';
-import logo from '../logo.svg';
+// import logo from '../logo.svg';
 
 class AppHeader extends Component {
   render() {
     return (
       <div className="App-header">
-        <Header transparent title={this.props.title} >
+        <Header title={this.props.title} >
           <Navigation>
+            <span></span>
             <IconButton name="refresh" onClick={this.props.refresh} ripple/>
           </Navigation>
         </Header>
-        <img src={logo} className="App-logo" alt="logo" />
       </div>
     );
   }

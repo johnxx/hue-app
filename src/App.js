@@ -16,17 +16,19 @@ class App extends Component {
     this.state = {
       hostname: 'philips-hue',
       username: 'f2phc-1MJ6a0C2lAej7VxoUndaFPaPl9nhrgcK3v',
-      description: "A Philips Hue web client",
+      description: "Hue App",
       groups: [],
     };
   }
 
   refreshGroups(conn) {
+    console.log("About to update groups");
     var comp = this;
     if(!conn.groups) {
       console.log("Loading conn from local state");
       conn = this.state.conn;
     }
+    console.log("Updating groups");
     conn.groups()
       .then(function(groups) {
         groups.shift();
@@ -65,8 +67,8 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <AppHeader title={this.state.title} refresh={this.refreshGroups} />
-          <Drawer title="App">
+          <AppHeader title={this.state.description} refresh={this.refreshGroups} />
+          <Drawer title="Hue App">
             <Navigation>
               <a href="">Link</a>
             </Navigation>
