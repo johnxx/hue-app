@@ -25,6 +25,12 @@ class Toggle extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      groupOn: nextProps.group.state.all_on
+    });
+  }
+
   _turnedOn(result) {
     this._updateStatus(true, result)
   }
@@ -41,6 +47,7 @@ class Toggle extends Component {
       this.setState({
         groupOn: on
       });
+      this.props.refresh(this.props.conn);
     }
   }
 

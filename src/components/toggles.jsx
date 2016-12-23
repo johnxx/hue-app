@@ -15,6 +15,7 @@ class Toggles extends Component {
             return(
               <Toggle 
                 toggler={comp.props.toggler} 
+                refresh={comp.props.refresh}
                 group={group} 
                 key={group.key}
                 conn={comp.props.conn}

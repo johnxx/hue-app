@@ -12,7 +12,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this._setupGroups = this._setupGroups.bind(this);
+    this.refreshGroups = this.refreshGroups.bind(this);
     this.state = {
       hostname: 'philips-hue',
       username: 'f2phc-1MJ6a0C2lAej7VxoUndaFPaPl9nhrgcK3v',
@@ -21,7 +21,7 @@ class App extends Component {
     };
   }
 
-  _setupGroups(conn) {
+  refreshGroups(conn) {
     conn.groups()
       .then(function(groups) {
         groups.shift();
@@ -49,10 +49,10 @@ class App extends Component {
       off: lightState.create().off()
     }
     this.setState({
-      hueConnection: hue,
+      conn: hue,
       modes: modes
     });
-    this._setupGroups(hue);
+    this.refreshGroups(hue);
   }
 
   render() {
@@ -68,7 +68,8 @@ class App extends Component {
           <Toggles 
             groups={this.state.groups} 
             modes={this.state.modes}
-            conn={this.state.hueConnection}
+            conn={this.state.conn}
+            refresh={this.refreshGroups}
           />
         </Layout>
       </div>
