@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { 
   Navigation, 
+  IconButton,
   Header,
 } from 'react-mdl';
 import logo from '../logo.svg';
@@ -11,7 +12,7 @@ class AppHeader extends Component {
       <div className="App-header">
         <Header transparent title={this.props.title} >
           <Navigation>
-            <a href="">Link</a>
+            <IconButton name="refresh" onClick={this.props.refresh} ripple/>
           </Navigation>
         </Header>
         <img src={logo} className="App-logo" alt="logo" />

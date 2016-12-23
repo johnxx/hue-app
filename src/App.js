@@ -22,16 +22,22 @@ class App extends Component {
   }
 
   refreshGroups(conn) {
+    var comp = this;
+    if(!conn.groups) {
+      console.log("Loading conn from local state");
+      conn = this.state.conn;
+    }
     conn.groups()
       .then(function(groups) {
         groups.shift();
         groups.forEach(function(v, k, a) {
           a[k].key = k;
         });
-        this.setState({
+        comp.setState({
           groups: groups
         });
-      }.bind(this))
+        console.log("Updated groups");
+      })
       .done();
   }
 
@@ -59,7 +65,7 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <AppHeader title={this.state.title} />
+          <AppHeader title={this.state.title} refresh={this.refreshGroups} />
           <Drawer title="App">
             <Navigation>
               <a href="">Link</a>
