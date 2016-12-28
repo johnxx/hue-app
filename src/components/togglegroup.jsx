@@ -4,7 +4,7 @@ import {
   Switch
 } from 'react-mdl';
 
-class Toggle extends Component {
+class ToggleGroup extends Component {
 
   constructor(props) {
     super(props);
@@ -69,7 +69,7 @@ class Toggle extends Component {
 
   render() {
     return(
-      <ListItem className="Toggle" >
+      <ListItem className="ToggleGroup" >
         <Switch 
           checked={this.state.groupOn} 
           onChange={this._flip} 
@@ -80,4 +80,4 @@ class Toggle extends Component {
   }
 }
 
-export default Toggle;
+export default ToggleGroup;

@@ -5,42 +5,19 @@ import {
   Navigation,
 } from 'react-mdl';
 import AppHeader from './components/header';
-import Toggles from './components/toggles';
+import Groups from './components/groups';
+import Lights from './components/lights';
 import './App.css';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.refreshGroups = this.refreshGroups.bind(this);
     this.state = {
       hostname: 'philips-hue',
       username: 'f2phc-1MJ6a0C2lAej7VxoUndaFPaPl9nhrgcK3v',
-      description: "Hue App",
-      groups: [],
+      description: "Hue App"
     };
-  }
-
-  refreshGroups(conn) {
-    console.log("About to update groups");
-    var comp = this;
-    if(!conn.groups) {
-      console.log("Loading conn from local state");
-      conn = this.state.conn;
-    }
-    console.log("Updating groups");
-    conn.groups()
-      .then(function(groups) {
-        groups.shift();
-        groups.forEach(function(v, k, a) {
-          a[k].key = k;
-        });
-        comp.setState({
-          groups: groups
-        });
-        console.log("Updated groups");
-      })
-      .done();
   }
 
   _kToMirek(kelvin) {
@@ -58,26 +35,40 @@ class App extends Component {
     }
     this.setState({
       conn: hue,
-      modes: modes
+      modes: modes,
+      currentPage: "groups"
     });
-    this.refreshGroups(hue);
+  }
+
+  setPage(page, proxy, event) {
+    var layout = document.querySelector('.mdl-layout');
+    this.setState({
+      currentPage: page
+    });
+    layout.MaterialLayout.toggleDrawer();
   }
 
   render() {
+    var comp = this;
     return (
       <div className="App">
         <Layout fixedHeader>
-          <AppHeader title={this.state.description} refresh={this.refreshGroups} />
+          <AppHeader title={this.state.description} />
           <Drawer title="Hue App">
             <Navigation>
-              <a href="">Link</a>
+              <a onClick={this.setPage.bind(comp, 'groups')} >Groups</a>
+              <a onClick={this.setPage.bind(comp, 'lights')} >Lights</a>
             </Navigation>
           </Drawer>
-          <Toggles 
-            groups={this.state.groups} 
-            modes={this.state.modes}
+          <Groups 
             conn={this.state.conn}
-            refresh={this.refreshGroups}
+            modes={this.state.modes}
+            currentPage={this.state.currentPage}
+          />
+          <Lights
+            conn={this.state.conn}
+            modes={this.state.modes}
+            currentPage={this.state.currentPage}
           />
         </Layout>
       </div>
