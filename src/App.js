@@ -14,7 +14,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hostname: 'philips-hue.lan',
+      hostname: '172.30.117.168',
+      // hostname: 'philips-hue.lan',
       username: 'DJZSSKqOD6aLGEHKM2KR2D1Zm6E5xQoPQvAodOlC',
       // username: 'f2phc-1MJ6a0C2lAej7VxoUndaFPaPl9nhrgcK3v',
       description: "Hue App"
