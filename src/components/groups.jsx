@@ -14,6 +14,10 @@ class Groups extends Component {
     };
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    console.log("Will re-render groups");
+  }
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.currentPage === 'groups' && nextProps.conn) {
       this.refreshGroups(nextProps.conn);

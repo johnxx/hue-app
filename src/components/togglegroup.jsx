@@ -16,6 +16,10 @@ class ToggleGroup extends Component {
     }
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    console.log("Will re-render toggle");
+  }
+
   componentDidMount() {
     var group = this.props.group;
     if(group.state) {
