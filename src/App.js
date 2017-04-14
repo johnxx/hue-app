@@ -13,33 +13,31 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      hostname: '172.30.117.168',
-      // hostname: 'philips-hue.lan',
-      username: 'DJZSSKqOD6aLGEHKM2KR2D1Zm6E5xQoPQvAodOlC',
-      // username: 'f2phc-1MJ6a0C2lAej7VxoUndaFPaPl9nhrgcK3v',
-      description: "Hue App"
-    };
-  }
-
-  _kToMirek(kelvin) {
-    return 1000000 / kelvin;
-  }
-
-  componentDidMount() {
+    var 
+      // hostname = 'tatsumaki',
+      hostname = 'philips-hue',
+      username = 'DJZSSKqOD6aLGEHKM2KR2D1Zm6E5xQoPQvAodOlC',
+      // username = 'f2phc-1MJ6a0C2lAej7VxoUndaFPaPl9nhrgcK3v',
+      // description = "Hue App",
+      // port = 8080,
+      timeout = 10000;
     var hue = 
-      new window.Hue.HueApi(this.state.hostname, this.state.username);
+      new window.Hue.HueApi(hostname, username, timeout);
     var lightState = window.Hue.lightState;
     var temp = this._kToMirek(3000);
     var modes = {
       on: lightState.create().on().white(temp).bri(255),
       off: lightState.create().off()
     }
-    this.setState({
+    this.state = {
       conn: hue,
       modes: modes,
       currentPage: "groups"
-    });
+    };
+  }
+
+  _kToMirek(kelvin) {
+    return 1000000 / kelvin;
   }
 
   setPage(page, proxy, event) {

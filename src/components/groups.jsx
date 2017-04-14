@@ -18,7 +18,13 @@ class Groups extends Component {
     console.log("Will re-render groups");
   }
 
+  componentWillMount() {
+    console.log("Loading groups from WillMount");
+    this.refreshGroups(this.props.conn);
+  }
+
   componentWillReceiveProps(nextProps) {
+    console.log("Refreshing from willReceiveProps");
     if(nextProps.currentPage === 'groups' && nextProps.conn) {
       this.refreshGroups(nextProps.conn);
     }
